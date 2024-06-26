@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { invoke } from "@tauri-apps/api/core";
-	import { ask } from "@tauri-apps/plugin-dialog";
 	import { locale, platform, type Platform } from "@tauri-apps/plugin-os";
 	import {
 		isPermissionGranted,
 		sendNotification,
 		requestPermission,
 	} from "@tauri-apps/plugin-notification";
+	import { check_for_updates } from "./updater";
 	let name = "";
 	let greetMsg = "";
 
@@ -44,6 +44,8 @@
 				body: "You are now subscribed to Tauri notifications!",
 			});
 		}
+
+		await check_for_updates();
 	}
 
 	let system: Platform | "" = "";

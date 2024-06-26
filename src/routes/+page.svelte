@@ -38,6 +38,7 @@
 		}
 
 		if (has_permission) {
+			console.log("Sending notification");
 			sendNotification({
 				title: "Hello from Tauri!",
 				body: "You are now subscribed to Tauri notifications!",

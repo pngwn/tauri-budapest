@@ -2,7 +2,11 @@
 	import { invoke } from "@tauri-apps/api/core";
 	import { ask } from "@tauri-apps/plugin-dialog";
 	import { locale, platform, type Platform } from "@tauri-apps/plugin-os";
-
+	import {
+		isPermissionGranted,
+		sendNotification,
+		requestPermission,
+	} from "@tauri-apps/plugin-notification";
 	let name = "";
 	let greetMsg = "";
 
@@ -19,6 +23,26 @@
 
 		system = await platform();
 		loc = await locale();
+
+		let has_permission = await isPermissionGranted();
+		if (!has_permission) {
+			const perm = await requestPermission();
+
+			if (perm !== "granted") {
+				console.log("Permission denied");
+				return;
+			} else {
+				has_permission = true;
+				console.log("Permission granted");
+			}
+		}
+
+		if (has_permission) {
+			sendNotification({
+				title: "Hello from Tauri!",
+				body: "You are now subscribed to Tauri notifications!",
+			});
+		}
 	}
 
 	let system: Platform | "" = "";

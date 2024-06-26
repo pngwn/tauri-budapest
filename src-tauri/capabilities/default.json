@@ -13,10 +13,15 @@
 		"menu:default",
 		"tray:default",
 		"shell:allow-open",
+
 		"dialog:default",
 		"dialog:allow-ask",
+
 		"os:default",
 		"os:allow-locale",
-		"os:allow-platform"
+		"os:allow-platform",
+
+		"notification:default",
+		"notification:allow-is-permission-granted"
 	]
 }

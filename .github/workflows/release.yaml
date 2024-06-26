@@ -4,7 +4,7 @@ on:
   push:
     branches:
       # replace with your release branch, usually `main`.
-      - example
+      - main
   workflow_dispatch:
     inputs:
       app-slug:
